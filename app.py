@@ -40,6 +40,17 @@ def handle_message(event):
     msg = event.message.text
     r = "感謝您的回復，本功能尚在開發中，敬請期待!!"
 
+    if "給我貼圖" in msg:
+        sticker_message = StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        ticker_message)
+        return
+
     if msg in ["hi", "Hi"]:
         r = "嗨"
     elif msg == "功能":
@@ -47,8 +58,8 @@ def handle_message(event):
     elif msg == "你是誰":
          r ="我是一個正在學習的機器人"
     elif "預約" in msg:
-        r = "目前預約人數眾多，請稍代回復"
-    
+        r = "目前預約人數眾多，請稍待回復"
+
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
